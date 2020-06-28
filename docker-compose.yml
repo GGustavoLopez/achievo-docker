@@ -1,0 +1,20 @@
+version: "3"
+services:
+  achievo:
+    build: .
+    ports:
+      - "8885:80"
+    volumes:
+      - ./achievo:/var/www/html/public
+    restart: always
+  database:    
+    image: mysql:5.5    
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=achievo
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=secret
+    restart: always
+
